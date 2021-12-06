@@ -35,6 +35,7 @@ public class Roman extends BaseTest {
 
         driver.get("https://rifle.com/4-Wheel-Off-Road/Suzuki-Samurai/Suzuki-Samurai-Under-Seat-Storage-Tray.aspx");
 
+
     }
 
 }
