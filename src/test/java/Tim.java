@@ -25,4 +25,10 @@ public class Tim extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_CatalogNodeList_ctl00_CategoryItem_CategoryName']")).getText(), "Rifle Cruise Tour Fairing");
     }
 
+    @Test
+    void rifleCruiseTest(){  // Test case #TC-MP-004
+        driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_webpagePage']/div/div[1]/div[1]/a/img")).click();
+        driver.findElement(By.xpath("(//*[text()='Rifle Cruise Tour Fairing'])[4]")).click();
+        Assert.assertEquals(driver.findElement(By.xpath("//*/h1")).getText(), "Rifle Cruise Tour Fairing");
+    }
 }
