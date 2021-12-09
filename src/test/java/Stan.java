@@ -1,4 +1,5 @@
 import Utils.BaseTest;
+import model.LoginPage;
 import model.MainPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -6,6 +7,8 @@ import org.testng.annotations.Test;
 
 public class Stan extends BaseTest {
     MainPage mainPage;
+    LoginPage loginPage;
+
 
     @Test
     public void loginLinkTest() {  // Test case #TC-HD-001
@@ -16,11 +19,15 @@ public class Stan extends BaseTest {
     }
 
     @Test
-    void loginWithCorrectCredsTest() {  // Test case #TC-HD-002
-        driver.get("https://rifle.com/Login.aspx");
-        driver.findElement(By.xpath("//input[@id='ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_UserName']")).sendKeys("georgians_forever@gmail.com");
-        driver.findElement(By.xpath("//input[@id='ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_Password']")).sendKeys("Qwerty1");
-        driver.findElement(By.xpath("//input[@id='ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_LoginButton']")).click();
+    void loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
+        mainPage = new MainPage(driver);
+        mainPage.clickLoginButton();
+
+        loginPage = new LoginPage(driver);
+        loginPage.fillUsername("georgians_forever@gmail.com");
+        loginPage.fillPassword("Qwerty1");
+        loginPage.clickSigninButton();
+
         Assert.assertEquals(driver.findElement(By.xpath("//h1")).getText(), "Account Sign In");
     }
 
