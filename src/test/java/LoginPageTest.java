@@ -22,7 +22,7 @@ public class LoginPageTest extends BaseTest {
     }
 
     @Test
-    void loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
+    void  loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
         loginPage = mainPage.clickLoginButton();
         loginPage.fillUsername("georgians_forever@gmail.com");
         loginPage.fillPassword("Qwerty1");
@@ -46,6 +46,4 @@ public class LoginPageTest extends BaseTest {
         loginPage.clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='You must provide a user name.']")).isDisplayed());
     }
-
-
 }
