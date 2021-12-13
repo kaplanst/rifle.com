@@ -25,8 +25,8 @@ public class CartPageTest extends BaseTest {
 
     @Test
     void clickBackToShoppingNoLogin () {
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickBackToShopping();
+        cartPage = mainPage.clickCartButton()
+                .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//h3")).getText(), "Motorcycle Windshields and Fairings");
     }
 

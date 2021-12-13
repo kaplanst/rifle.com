@@ -14,12 +14,14 @@ public class CartPage {
         this.driver = driver;
     }
 
-    public void clickBackToShopping () {
+    public CartPage clickBackToShopping () {
         driver.findElement(backToShoppingButton).click();
+        return this;
     }
 
-    public void clickProductFromCart () {
+    public CartPage clickProductFromCart () {
         driver.findElement(productLinInCart).click();
+        return this;
     }
 
 }
