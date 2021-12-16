@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
+    MainPage mainPage;
+    LoginPage loginPage;
 
     WebDriver driver;
 
@@ -19,8 +21,8 @@ public class LoginPage {
         driver.findElement(username).sendKeys(strUserName);
         return this;
     }
-    public LoginPage
-    fillPassword (String strPassword){
+
+    public LoginPage fillPassword (String strPassword){
         driver.findElement(password).sendKeys(strPassword);
         return this;
     }
@@ -29,4 +31,7 @@ public class LoginPage {
         driver.findElement(signInButton).click();
         return this;
     }
+
+
+
 }

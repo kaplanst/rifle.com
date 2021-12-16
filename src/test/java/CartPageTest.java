@@ -1,4 +1,5 @@
 import Utils.BaseTest;
+import Utils.UtilsMethod;
 import model.CartPage;
 import model.LoginPage;
 import model.MainPage;
@@ -11,10 +12,12 @@ public class CartPageTest extends BaseTest {
     MainPage mainPage;
     LoginPage loginPage;
     CartPage cartPage;
+    UtilsMethod utils;
 
     @BeforeMethod
     void startTests(){
         mainPage = new MainPage(driver);
+        utils = new UtilsMethod(driver);
     }
 
     @Test
@@ -32,34 +35,28 @@ public class CartPageTest extends BaseTest {
 
     @Test
     void clickBackToShoppingNoLoginProduct () {
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickProductFromCart();
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickBackToShopping();
+        cartPage = mainPage.clickCartButton()
+                .clickProductFromCart()
+                .clickCartButton()
+                .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_BuyProductDialog1_trOurPrice']/th")).getText(), "Our Price:");
     }
 
     @Test
     void clickBackToShoppingLogin () {
-        loginPage = mainPage.clickLoginButton();
-        loginPage.fillUsername("georgians_forever@gmail.com");
-        loginPage.fillPassword("Qwerty1");
-        loginPage.clickSigninButton();
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickBackToShopping();
+        utils.login("georgians_forever@gmail.com", "Qwerty1");
+        cartPage = mainPage.clickCartButton()
+                .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//h3")).getText(), "Motorcycle Windshields and Fairings");
     }
 
     @Test
     void clickBackToShoppingLoginProduct () {
-        loginPage = mainPage.clickLoginButton();
-        loginPage.fillUsername("georgians_forever@gmail.com");
-        loginPage.fillPassword("Qwerty1");
-        loginPage.clickSigninButton();
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickProductFromCart();
-        cartPage = mainPage.clickCartButton();
-        cartPage.clickBackToShopping();
+        utils.login("georgians_forever@gmail.com", "Qwerty1");
+        cartPage = mainPage.clickCartButton()
+                .clickProductFromCart()
+                .clickCartButton()
+                .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_BuyProductDialog1_trOurPrice']/th")).getText(), "Our Price:");
     }
 }
