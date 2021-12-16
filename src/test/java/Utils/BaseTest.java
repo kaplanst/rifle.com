@@ -23,8 +23,8 @@ public class BaseTest {
 
     }
 
-//    @AfterMethod
-//    public void byeBye(){
-//       driver.quit();
-//    }
+    @AfterMethod
+    public void byeBye(){
+       driver.quit();
+    }
 }

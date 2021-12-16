@@ -22,30 +22,28 @@ public class LoginPageTest extends BaseTest {
     }
 
     @Test
-    void loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
-        loginPage = mainPage.clickLoginButton();
-        loginPage.fillUsername("georgians_forever@gmail.com");
-        loginPage.fillPassword("Qwerty1");
-        loginPage.clickSigninButton();
+    void  loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
+        loginPage = mainPage.clickLoginButton()
+                    .fillUsername("georgians_forever@gmail.com")
+                    .fillPassword("Qwerty1")
+                    .clickSigninButton();
         Assert.assertEquals(driver.findElement(By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LogoutLink2")).getText(), "Logout");
     }
 
     @Test
     void loginWithIncorrectCredsTest() {  // Test case #TC-HD-003
-        loginPage = mainPage.clickLoginButton();
-        loginPage.fillUsername("georgians_forever@gmail");
-        loginPage.fillPassword("Qwerty1");
-        loginPage.clickSigninButton();
+        loginPage = mainPage.clickLoginButton()
+                    .fillUsername("georgians_forever@gmail")
+                    .fillPassword("Qwerty1")
+                    .clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='The sign in information you provided was incorrect.']")).isDisplayed());
     }
 
     @Test
     void loginWithEmptyUsernameTest() {  // Test case #TC-HD-004
-        loginPage = mainPage.clickLoginButton();
-        loginPage.fillPassword("Qwerty1");
-        loginPage.clickSigninButton();
+        loginPage = mainPage.clickLoginButton()
+                    .fillPassword("Qwerty1")
+                    .clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='You must provide a user name.']")).isDisplayed());
     }
-
-
 }
