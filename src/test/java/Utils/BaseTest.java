@@ -10,8 +10,11 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-
     public WebDriver driver;
+
+    public static final String LOGIN = "georgians_forever@gmail.com";
+    public static final String WRONG_LOGIN = "georgians_forever@gmail";
+    public static final String PASSWORD = "Qwerty1";
 
     @BeforeMethod
     public void setUp(){
