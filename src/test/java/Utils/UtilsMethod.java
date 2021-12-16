@@ -15,16 +15,10 @@ public class UtilsMethod {
 
     public void login(String login, String pass) {
         mainPage = new MainPage(driver);
-        loginPage = mainPage.clickLoginButton();
-
-        loginPage = new LoginPage(driver);
-        loginPage.fillUsername(login);
-        loginPage.fillPassword(pass);
-        loginPage.clickSigninButton();
-        //return new MainPage(driver);
+        loginPage = mainPage.clickLoginButton()
+                 .fillUsername(login)
+                 .fillPassword(pass)
+                 .clickSigninButton();
     }
 
-//    public void clearCart(){
-//
-//    }
 }
