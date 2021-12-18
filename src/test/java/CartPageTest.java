@@ -34,7 +34,7 @@ public class CartPageTest extends BaseTest {
     void clickBackToShoppingNoLoginProduct () {
         cartPage = mainPage.clickCartButton();
         cartPage.clickProductFromCart();
-        cartPage = mainPage.clickCartButton();
+        mainPage.clickCartButton();
         cartPage.clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_BuyProductDialog1_trOurPrice']/th")).getText(), "Our Price:");
     }
