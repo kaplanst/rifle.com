@@ -19,9 +19,9 @@ public class CartPage {
         return this;
     }
 
-    public CartPage clickProductFromCart () {
+    public MainPage clickProductFromCart () {
         driver.findElement(productLinInCart).click();
-        return this;
+        return new MainPage (driver);
     }
 
 }
