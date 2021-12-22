@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Victoria extends BaseTest {
+public class Rifle4WheelOffRoadPageTest extends BaseTest {
 
     public static void scroll(WebDriver driver, WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
