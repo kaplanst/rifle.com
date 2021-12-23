@@ -70,7 +70,7 @@ public class BaseTest {
         }
 
         float runTime = (float)( result.getEndMillis() - result.getStartMillis() )/1000;
-        PrintWriter consoleOutput = new PrintWriter(new FileOutputStream("C:/TestsLog/log.txt"),true);
+        PrintWriter consoleOutput = new PrintWriter(new FileOutputStream(new File("C:/TestsLog/log.txt"),true));
         consoleOutput.println(formatDateTime.format(dateNow) + " | Finished correctly: "
                 + result.isSuccess() + " | Run time: " + runTime + " sec\t| " + result.getName());
         consoleOutput.flush();
