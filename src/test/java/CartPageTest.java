@@ -53,7 +53,8 @@ public class CartPageTest extends BaseTest {
     @Test
     void clickBackToShoppingLoginProduct () {
         utils.login("georgians_forever@gmail.com", "Qwerty1");
-        cartPage = mainPage.clickCartButton()
+        cartPage = mainPage.clickCartButton();
+                utils.clearCart()
                 .clickProductFromCart()
                 .clickCartButton()
                 .clickBackToShopping();
