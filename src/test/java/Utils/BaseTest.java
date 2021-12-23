@@ -27,8 +27,8 @@ public class BaseTest {
     public static final String LOGIN = "georgians_forever@gmail.com";
     public static final String WRONG_LOGIN = "georgians_forever@gmail";
     public static final String PASSWORD = "Qwerty1";
-    public String LOGIN_PROP = "default.username";
-    public String PAS_PROP = "default.password";
+    public static final String LOGIN_PROP = "default.username";
+    public static final String PAS_PROP = "default.password";
 
     public static Properties properties;
 
