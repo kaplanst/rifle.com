@@ -1,4 +1,5 @@
 import Utils.BaseTest;
+import Utils.UtilsMethod;
 import model.LoginPage;
 import model.MainPage;
 import org.openqa.selenium.By;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 public class LoginPageTest extends BaseTest {
     MainPage mainPage;
     LoginPage loginPage;
+    UtilsMethod utils;
 
     @BeforeMethod
     void startTests(){
@@ -88,6 +90,13 @@ public class LoginPageTest extends BaseTest {
         WebElement noConfirmPassword = driver.findElement(By.xpath("//*[text()='You must re-enter the password.']"));
         Assert.assertTrue(noPassword.isDisplayed());
         Assert.assertTrue(noConfirmPassword.isDisplayed());
+    }
+
+    @Test
+    void loginDefaultTest(){
+        loginPage = mainPage.clickLoginButton();
+        utils = new UtilsMethod(driver);
+        System.out.println(getUserName());
     }
 
 }

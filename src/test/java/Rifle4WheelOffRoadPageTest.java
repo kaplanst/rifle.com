@@ -13,7 +13,6 @@ public class Rifle4WheelOffRoadPageTest extends BaseTest {
     @Test
     public void openRifle4WheelOffRoadPage() {
         utils = new UtilsMethod(driver);
-        driver.get("https://rifle.com/");
         utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
         Assert.assertEquals(driver.findElement(By.xpath("//h1")).getText(), "Rifle 4 Wheel Off Road");
     }

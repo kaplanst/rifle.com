@@ -27,17 +27,17 @@ public class BaseTest {
     public static final String LOGIN = "georgians_forever@gmail.com";
     public static final String WRONG_LOGIN = "georgians_forever@gmail";
     public static final String PASSWORD = "Qwerty1";
-    private static final String LOGIN_PROP = "default.username";
-    private static final String PAS_PROP = "default.password";
+    public String LOGIN_PROP = "default.username";
+    public String PAS_PROP = "default.password";
 
     public static Properties properties;
 
-    public static String getUserName() {
+    public String getUserName() {
         properties = new Properties();
         return properties.getProperty(LOGIN_PROP);
     }
 
-    public static String getUserPassword() {
+    public String getUserPassword() {
         properties = new Properties();
         return properties.getProperty(PAS_PROP);
     }
