@@ -48,7 +48,6 @@ public class BaseTest {
 
             }
         }
-
         driver.manage().deleteAllCookies();
         driver.quit();
     }
