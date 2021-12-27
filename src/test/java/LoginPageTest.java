@@ -94,9 +94,9 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     void loginDefaultTest(){
-        loginPage = mainPage.clickLoginButton();
         utils = new UtilsMethod(driver);
-        System.out.println(getUserName());
+        loginPage = mainPage.clickLoginButton();
+        utils.login("georgians_forever@gmail.com", "Qwerty1");
     }
 
 }

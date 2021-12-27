@@ -22,6 +22,7 @@ public class UtilsMethod extends BaseTest{
     }
 
     public void login(String login, String pass) {
+        System.out.println("Start");
         mainPage = new MainPage(driver);
         loginPage = mainPage.clickLoginButton()
                  .fillUsername(login)
@@ -32,11 +33,9 @@ public class UtilsMethod extends BaseTest{
     public void loginDefault() {
         mainPage = new MainPage(driver);
         loginPage = mainPage.clickLoginButton()
-                .fillUsername(getUserName());
-        System.out.println(getUserName());
-        loginPage.fillPassword(getUserPassword());
-        System.out.println(getUserPassword());
-        loginPage.clickSigninButton();
+                .fillUsername(getUserName())
+                .fillPassword(getUserPassword())
+                .clickSigninButton();
     }
 
     public void scroll(WebDriver driver, WebElement element) {
