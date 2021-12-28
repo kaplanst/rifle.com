@@ -28,7 +28,7 @@ public class BaseTest {
     public static final String PASSWORD = "Qwerty1";
     public static final String LOGIN_PROP = "default.username";
     public static final String PAS_PROP = "default.password";
-    public static final String PROPERTY_PATH = System.getProperty("user.dir")
+    public static final String PROPERTY_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
                                                 + "\\src\\test\\resources\\local.properties";
 
     public static Properties properties;

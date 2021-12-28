@@ -84,7 +84,7 @@ public class LoginPageTest extends BaseTest {
    @Test
     void registerWithoutPasswordTest() {
         loginPage = mainPage.clickLoginButton()
-                .fillNewUsername(LOGIN)
+                .fillNewUsername(getUserName())
                 .clickRegisterButton();
         WebElement noPassword = driver.findElement(By.xpath("//*[text()='You must provide a password']"));
         WebElement noConfirmPassword = driver.findElement(By.xpath("//*[text()='You must re-enter the password.']"));
