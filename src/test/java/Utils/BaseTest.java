@@ -10,10 +10,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,16 +26,28 @@ public class BaseTest {
     public static final String PASSWORD = "Qwerty1";
     public static final String LOGIN_PROP = "default.username";
     public static final String PAS_PROP = "default.password";
+    public static final String PROPERTY_PATH = System.getProperty("user.dir") + "\\src\\test\\resources\\local.properties";
+
 
     public static Properties properties;
 
     public String getUserName() {
-        properties = new Properties();
+        try {
+            FileInputStream fis = new FileInputStream(PROPERTY_PATH);
+            properties = new Properties();
+            properties.load(fis);
+
+        } catch (Exception e) {}
         return properties.getProperty(LOGIN_PROP);
     }
 
     public String getUserPassword() {
-        properties = new Properties();
+        try {
+            FileInputStream fis = new FileInputStream(PROPERTY_PATH);
+            properties = new Properties();
+            properties.load(fis);
+
+        } catch (Exception e) {}
         return properties.getProperty(PAS_PROP);
     }
 
