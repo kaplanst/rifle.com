@@ -6,6 +6,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,30 +26,63 @@ public class BaseTest {
     public static final String LOGIN = "georgians_forever@gmail.com";
     public static final String WRONG_LOGIN = "georgians_forever@gmail";
     public static final String PASSWORD = "Qwerty1";
-  //  public static final String LOGIN_PROP = "default.username";
+    public static final String LOGIN_PROP = "default.username";
     public static final String PAS_PROP = "default.password";
+    public static final String PROPERTY_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
+                                                + "\\src\\test\\resources\\local.properties";
 
     public static Properties properties;
 
     public String getUserName() {
         try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\Stanislav\\IdeaProjects\\rifle.com\\src\\test\\resources\\local.properties");
+            FileInputStream fis = new FileInputStream(PROPERTY_PATH);
             properties = new Properties();
             properties.load(fis);
 
-        } catch (Exception e) {}
-        return properties.getProperty("default.username");
+        } catch (Exception e) {
+            System.out.println("There is no properties file");
+        }
+        return properties.getProperty(LOGIN_PROP);
     }
 
     public String getUserPassword() {
-        properties = new Properties();
+        try {
+            FileInputStream fis = new FileInputStream(PROPERTY_PATH);
+            properties = new Properties();
+            properties.load(fis);
+
+        } catch (Exception e) {
+            System.out.println("There is no properties file");
+        }
         return properties.getProperty(PAS_PROP);
+    }
+
+    public String getBrowser() {
+        try {
+            FileInputStream fis = new FileInputStream(PROPERTY_PATH);
+            properties = new Properties();
+            properties.load(fis);
+
+        } catch (Exception e) {
+            System.out.println("There is no properties file");
+        }
+        return properties.getProperty("browser");
     }
 
     @BeforeMethod
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        if (getBrowser().equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }
+        if (getBrowser().equals("firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+        }
+        if (getBrowser().equals("opera")) {
+            WebDriverManager.operadriver().setup();
+            driver = new OperaDriver();
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://rifle.com/");
