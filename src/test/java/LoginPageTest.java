@@ -27,8 +27,8 @@ public class LoginPageTest extends BaseTest {
     @Test
     void  loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
         loginPage = mainPage.clickLoginButton()
-                .fillUsername(LOGIN)
-                .fillPassword(PASSWORD)
+                .fillUsername(getUserName())
+                .fillPassword(getUserPassword())
                 .clickSigninButton();
         Assert.assertEquals(driver.findElement(By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LogoutLink2")).getText(), "Logout");
     }
@@ -94,9 +94,8 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     void loginDefaultTest(){
-        loginPage = mainPage.clickLoginButton();
         utils = new UtilsMethod(driver);
-        System.out.println(getUserName());
+        utils.loginDefault();
     }
 
 }
