@@ -22,6 +22,7 @@ public class UtilsMethod extends BaseTest{
     }
 
     public void login(String login, String pass) {
+        System.out.println("Start");
         mainPage = new MainPage(driver);
         loginPage = mainPage.clickLoginButton()
                  .fillUsername(login)
