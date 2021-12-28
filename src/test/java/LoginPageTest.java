@@ -96,6 +96,7 @@ public class LoginPageTest extends BaseTest {
     void loginDefaultTest(){
         utils = new UtilsMethod(driver);
         utils.loginDefault();
+        Assert.assertEquals(driver.findElement(By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LogoutLink2")).getText(), "Logout");
     }
 
 }
