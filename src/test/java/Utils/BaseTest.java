@@ -86,6 +86,6 @@ public class BaseTest {
         consoleOutput.close();
 
         driver.manage().deleteAllCookies();
-//       driver.quit();
+        driver.quit();
     }
 }

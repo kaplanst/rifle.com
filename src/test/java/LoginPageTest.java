@@ -16,6 +16,7 @@ public class LoginPageTest extends BaseTest {
     @BeforeMethod
     void startTests(){
         mainPage = new MainPage(driver);
+//        utils = new UtilsMethod(driver);
     }
 
     @Test
@@ -52,9 +53,9 @@ public class LoginPageTest extends BaseTest {
     @Test
     void registerExistUserTest(){
         loginPage = mainPage.clickLoginButton()
-                .fillNewUsername(LOGIN)
-                .fillNewUserPassword(PASSWORD)
-                .confirmNewUserPassword(PASSWORD)
+                .fillNewUsername(getUserName())
+                .fillNewUserPassword(getUserPassword())
+                .confirmNewUserPassword(getUserPassword())
                 .clickRegisterButton();
         Assert.assertTrue(driver.findElement(By
                 .id("ctl00_ctl00_NestedMaster_PageContent_RegisterDialog1_RegisterValidationSummary")).isDisplayed());
@@ -95,8 +96,8 @@ public class LoginPageTest extends BaseTest {
     @Test
     void loginDefaultTest(){
         utils = new UtilsMethod(driver);
-        loginPage = mainPage.clickLoginButton();
-        utils.login("georgians_forever@gmail.com", "Qwerty1");
+        utils.loginDefault();
+        Assert.assertEquals(driver.findElement(By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LogoutLink2")).getText(), "Logout");
     }
 
 }
