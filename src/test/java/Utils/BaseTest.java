@@ -23,15 +23,11 @@ public class BaseTest {
 
     public WebDriver driver;
 
-    public static final String LOGIN = "georgians_forever@gmail.com";
-    public static final String WRONG_LOGIN = "georgians_forever@gmail";
-    public static final String PASSWORD = "Qwerty1";
     public static final String LOGIN_PROP = "default.username";
     public static final String PAS_PROP = "default.password";
     public static final String PROPERTY_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
                                                 + "\\src\\test\\resources\\local.properties";
-    public static final String RESOURCES_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
-            + "\\src\\test\\resources\\";
+    public static final String RESOURCES_PATH = System.getProperty("user.dir") + "\\src\\test\\resources\\";
 
     public static Properties properties;
 
