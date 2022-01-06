@@ -44,7 +44,7 @@ public class CartPageTest extends BaseTest {
 
     @Test
     void clickBackToShoppingLogin () {
-        utils.login("georgians_forever@gmail.com", "Qwerty1");
+        utils.loginDefault();
         cartPage = mainPage.clickCartButton()
                 .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//h3")).getText(), "Motorcycle Windshields and Fairings");
@@ -52,7 +52,7 @@ public class CartPageTest extends BaseTest {
 
     @Test
     void clickBackToShoppingLoginProduct () {
-        utils.login("georgians_forever@gmail.com", "Qwerty1");
+        utils.loginDefault();
         cartPage = mainPage.clickCartButton();
                 utils.clearCart()
                 .clickProductFromCart()

@@ -30,6 +30,8 @@ public class BaseTest {
     public static final String PAS_PROP = "default.password";
     public static final String PROPERTY_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
                                                 + "\\src\\test\\resources\\local.properties";
+    public static final String RESOURCES_PATH = System.getProperty("user.dir") //C:\Users\Stanislav\IdeaProjects\rifle.com
+            + "\\src\\test\\resources\\";
 
     public static Properties properties;
 
@@ -89,29 +91,46 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown(ITestResult result) throws FileNotFoundException {
+    public void tearDown(ITestResult result) {
         Date dateNow = new Date();
         SimpleDateFormat formatTime = new SimpleDateFormat("HH_mm_ss");
         SimpleDateFormat formatDateTime = new SimpleDateFormat("MMMMM d - HH:mm:ss");
+        float testRunTime = (float)( result.getEndMillis() - result.getStartMillis() )/1000;
 
         String fileName = result.getName() + "-" + formatTime.format(dateNow) + ".png";
-        if (ITestResult.FAILURE == result.getStatus()) {
-            try {
+        //if (ITestResult.FAILURE == result.getStatus()) {
+        if (!result.isSuccess()) {
+        try {
                 TakesScreenshot screenshot = (TakesScreenshot) driver;
                 File src = screenshot.getScreenshotAs(OutputType.FILE);
-                FileUtils.copyFile(src, new File("C:/TestsLog/" + fileName));
+                FileUtils.copyFile(src, new File(RESOURCES_PATH + fileName));
                 System.out.println("Screenshot file '"  + fileName + "' has been created ");
             } catch (Exception e){
                 System.out.println("Impossible to take screenshot");
             }
         }
-
-        float runTime = (float)( result.getEndMillis() - result.getStartMillis() )/1000;
-        PrintWriter consoleOutput = new PrintWriter(new FileOutputStream(new File("C:/TestsLog/log.txt"),true));
-        consoleOutput.println(formatDateTime.format(dateNow) + " | Finished correctly: "
-                + result.isSuccess() + " | Run time: " + runTime + " sec\t| " + result.getName());
-        consoleOutput.flush();
-        consoleOutput.close();
+        if (result.isSuccess()) {
+            try {
+                PrintWriter consoleOutput = new PrintWriter(new FileOutputStream(RESOURCES_PATH + "log.txt", true));
+                consoleOutput.println(formatDateTime.format(dateNow) + "\t| Test finished correctly in " + testRunTime
+                        + " sec\t| Test name: " + result.getName());
+                consoleOutput.flush();
+                consoleOutput.close();
+            } catch (Exception e) {
+                System.out.println("There was an error while trying to save the 'log.txt' file...");
+            }
+        } else {
+            try {
+                PrintWriter consoleOutput = new PrintWriter(new FileOutputStream(RESOURCES_PATH + "log.txt", true));
+                String [] errorCode = result.getThrowable().toString().split("\\r?\\n|\\r");
+                consoleOutput.println("!!! " + formatDateTime.format(dateNow) + " !!! Test failed with a runtime of " + testRunTime
+                        + " sec !!! Test name: " + result.getName() + " !!! Error caused by: " + errorCode[0]);
+                consoleOutput.flush();
+                consoleOutput.close();
+            } catch (Exception e) {
+                System.out.println("There was an error while trying to save the 'log.txt' file...");
+            }
+        }
 
         driver.manage().deleteAllCookies();
         driver.quit();
