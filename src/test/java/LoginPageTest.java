@@ -36,8 +36,8 @@ public class LoginPageTest extends BaseTest {
     @Test
     void loginWithIncorrectCredsTest() {  // Test case #TC-HD-003
         loginPage = mainPage.clickLoginButton()
-                .fillUsername(WRONG_LOGIN)
-                .fillPassword(PASSWORD)
+                .fillUsername("WRONG_LOGIN")
+                .fillPassword(getUserPassword())
                 .clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='The sign in information you provided was incorrect.']")).isDisplayed());
     }
@@ -45,16 +45,16 @@ public class LoginPageTest extends BaseTest {
     @Test
     void loginWithEmptyUsernameTest() {  // Test case #TC-HD-004
         loginPage = mainPage.clickLoginButton()
-                .fillPassword(PASSWORD)
+                .fillPassword(getUserPassword())
                 .clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='You must provide a user name.']")).isDisplayed());
     }
     @Test
     void registerExistUserTest(){
         loginPage = mainPage.clickLoginButton()
-                .fillNewUsername(LOGIN)
-                .fillNewUserPassword(PASSWORD)
-                .confirmNewUserPassword(PASSWORD)
+                .fillNewUsername(getUserName())
+                .fillNewUserPassword(getUserPassword())
+                .confirmNewUserPassword(getUserPassword())
                 .clickRegisterButton();
         Assert.assertTrue(driver.findElement(By
                 .id("ctl00_ctl00_NestedMaster_PageContent_RegisterDialog1_RegisterValidationSummary")).isDisplayed());
@@ -62,9 +62,9 @@ public class LoginPageTest extends BaseTest {
     @Test
     void registerWithWrongUserNameTest() {
         loginPage = mainPage.clickLoginButton()
-                .fillNewUsername(WRONG_LOGIN)
-                .fillNewUserPassword(PASSWORD)
-                .confirmNewUserPassword(PASSWORD)
+                .fillNewUsername("WRONG_LOGIN")
+                .fillNewUserPassword("AnyPassword")
+                .confirmNewUserPassword("AnyPassword")
                 .clickRegisterButton();
         WebElement wrongLogin = driver.findElement(By
                 .xpath("//*[text()='Email address should be in the format of name@domain.tld.']"));
@@ -73,7 +73,7 @@ public class LoginPageTest extends BaseTest {
    @Test
     void registerWithShortPasswordTest() {
         loginPage = mainPage.clickLoginButton()
-                .fillNewUsername(LOGIN)
+                .fillNewUsername(getUserName())
                 .fillNewUserPassword("123")
                 .confirmNewUserPassword("123")
                 .clickRegisterButton();
