@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Rifle4WheelOffRoadPageTest extends BaseTest {
@@ -18,14 +20,31 @@ public class Rifle4WheelOffRoadPageTest extends BaseTest {
     }
 
     @Test
-    public void testDropdownMenuCountElements(){
+    public void testDropdownMenuCountElements() {
         utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
-        driver.findElement(By.xpath("//select[@class='form-control-inline']")).click();
 
         Select objSelect = new Select((WebElement) driver.findElement(By.xpath("//select[@class='form-control-inline']")));
         List<WebElement> elementCount = objSelect.getOptions();
-        System.out.println(elementCount.size());
+        //System.out.println(elementCount.size());
 
         Assert.assertEquals(elementCount.size(), 8);
+    }
+
+    @Test
+    public void testDropdownMenuSortByNames()  {
+        utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
+
+        Select objSelect = new Select((WebElement) driver.findElement(By.xpath("//select[@class='form-control-inline']")));
+        driver.findElement(By.xpath("//select/option[@selected='selected']"));
+
+        ArrayList<String> obtainedList = new ArrayList<>();
+        List<WebElement> elementList = driver.findElements(By.xpath("//div[@class='categoryGridListing4']"));
+        for(WebElement we: elementList) {
+            obtainedList.add(we.getText());
+        }
+        ArrayList<String> sortedList = new ArrayList<>(obtainedList);
+        Collections.sort(sortedList);
+
+        Assert.assertEquals(obtainedList, sortedList);
     }
 }
