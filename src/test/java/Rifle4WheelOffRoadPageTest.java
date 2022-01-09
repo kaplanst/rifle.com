@@ -32,9 +32,8 @@ public class Rifle4WheelOffRoadPageTest extends BaseTest {
     public void testDropdownMenuCountElements() {
         utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
 
-        Select objSelect = new Select((WebElement) driver.findElement(By.xpath("//select[@class='form-control-inline']")));
+        Select objSelect = new Select(driver.findElement(By.xpath("//select[@class='form-control-inline']")));
         List<WebElement> elementCount = objSelect.getOptions();
-        //System.out.println(elementCount.size());
 
         Assert.assertEquals(elementCount.size(), 8);
     }
