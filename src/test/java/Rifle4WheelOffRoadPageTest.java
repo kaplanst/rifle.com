@@ -42,6 +42,9 @@ public class Rifle4WheelOffRoadPageTest extends BaseTest {
     public void testDropdownMenuSortByNames()  {
         utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
 
+        Select objSelect = new Select(driver.findElement(By.xpath("//select[@class='form-control-inline']")));
+        objSelect.selectByVisibleText("By Name (A -> Z)");
+
         ArrayList<String> sortedList = new ArrayList<>(getValues());
         Collections.sort(sortedList);
 
