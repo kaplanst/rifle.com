@@ -6,10 +6,21 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rifle4WheelOffRoadPageTest extends BaseTest {
     UtilsMethod utils = new UtilsMethod(driver);
+
+    public List<WebElement> getElements() {
+        return driver.findElements(By.xpath("//div[@class='categoryGridListing4']"));
+    }
+
+    public List<String> getValues() {
+        return getElements().stream().map(WebElement::getText).collect(Collectors.toList());
+    }
 
     @Test
     public void testOpenRifle4WheelOffRoadPage() {
@@ -18,14 +29,25 @@ public class Rifle4WheelOffRoadPageTest extends BaseTest {
     }
 
     @Test
-    public void testDropdownMenuCountElements(){
+    public void testDropdownMenuCountElements() {
         utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
-        driver.findElement(By.xpath("//select[@class='form-control-inline']")).click();
 
         Select objSelect = new Select(driver.findElement(By.xpath("//select[@class='form-control-inline']")));
         List<WebElement> elementCount = objSelect.getOptions();
-        System.out.println(elementCount.size());
 
         Assert.assertEquals(elementCount.size(), 8);
+    }
+
+    @Test
+    public void testDropdownMenuSortByNames()  {
+        utils.scrollClick(driver, By.xpath("//li/a[normalize-space(text())='4 Wheel Off Road']"));
+
+        Select objSelect = new Select(driver.findElement(By.xpath("//select[@class='form-control-inline']")));
+        objSelect.selectByVisibleText("By Name (A -> Z)");
+
+        ArrayList<String> sortedList = new ArrayList<>(getValues());
+        Collections.sort(sortedList);
+
+        Assert.assertEquals(getValues(), sortedList);
     }
 }
