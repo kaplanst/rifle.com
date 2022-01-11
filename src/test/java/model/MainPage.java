@@ -7,7 +7,7 @@ public class MainPage {
 
     public WebDriver driver;
 
-    By loginButton = By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LoginLink2");
+    By loginButton = By.xpath("//*[contains(@id, 'LoginLink2')]");
     By accountButton = By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_BootAccountLink");
     By wishListButton = By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_BootWishlistLink");
     By cartButton = By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_BootBasketLink");

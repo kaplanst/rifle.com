@@ -2,6 +2,7 @@ import Utils.BaseTest;
 import Utils.UtilsMethod;
 import model.LoginPage;
 import model.MainPage;
+import model.TopMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ public class LoginPageTest extends BaseTest {
     MainPage mainPage;
     LoginPage loginPage;
     UtilsMethod utils;
+    TopMenu topMenu;
 
     @BeforeMethod
     void startTests(){
@@ -98,5 +100,14 @@ public class LoginPageTest extends BaseTest {
         utils.loginDefault();
         Assert.assertEquals(driver.findElement(By.id("ctl00_ctl00_NestedMaster_PageHeader_StoreHeaderRifle_H_LogoutLink2")).getText(), "Logout");
     }
-
+    @Test
+    void menuTest(){
+        topMenu = new TopMenu(driver);
+        mainPage.clickLoginButton();
+        topMenu.topMenuShortTest();
+        utils = new UtilsMethod(driver);
+        utils.loginDefault();
+        mainPage.clickLoginButton();
+        topMenu.topMenuFullTest();
+    }
 }
