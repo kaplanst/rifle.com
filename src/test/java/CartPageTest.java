@@ -3,6 +3,7 @@ import Utils.UtilsMethod;
 import model.CartPage;
 import model.LoginPage;
 import model.MainPage;
+import model.TopMenu;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -10,14 +11,23 @@ import org.testng.annotations.Test;
 
 public class CartPageTest extends BaseTest {
     MainPage mainPage;
-    LoginPage loginPage;
+    TopMenu menu;
     CartPage cartPage;
     UtilsMethod utils;
+
 
     @BeforeMethod
     void startTests(){
         mainPage = new MainPage(driver);
         utils = new UtilsMethod(driver);
+        menu = new TopMenu(driver);
+        cartPage = new CartPage(driver);
+    }
+
+    @Test
+        void topMenuTest(){
+            mainPage.clickCartButton();
+            menu.topMenuShortTest();
     }
 
     @Test
