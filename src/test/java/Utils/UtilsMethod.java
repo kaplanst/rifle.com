@@ -19,15 +19,6 @@ public class UtilsMethod extends BaseTest{
         this.driver = driver;
     }
 
-    public void login(String login, String pass) {
-        System.out.println("Start");
-        header = new Header(driver);
-        loginPage = header.clickLoginButton()
-                 .fillUsername(login)
-                 .fillPassword(pass)
-                 .clickSigninButton();
-    }
-
     public void loginDefault() {
         header = new Header(driver);
         loginPage = header.clickLoginButton()
