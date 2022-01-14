@@ -1,3 +1,5 @@
+package Tests;
+
 import Utils.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;

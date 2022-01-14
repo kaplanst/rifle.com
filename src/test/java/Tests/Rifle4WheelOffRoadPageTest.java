@@ -1,3 +1,5 @@
+package Tests;
+
 import Utils.BaseTest;
 import Utils.UtilsMethod;
 import org.openqa.selenium.By;

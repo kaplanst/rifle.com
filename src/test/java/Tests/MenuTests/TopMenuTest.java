@@ -1,10 +1,9 @@
+package Tests.MenuTests;
+
 import Utils.BaseTest;
 import Utils.UtilsMethod;
-import model.LoginPage;
-import model.MainPage;
-import model.TopMenu;
+import model.Menus.TopMenu;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

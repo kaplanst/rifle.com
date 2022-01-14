@@ -1,8 +1,10 @@
+package Tests;
+
 import Utils.BaseTest;
 import Utils.UtilsMethod;
 import model.LoginPage;
 import model.MainPage;
-import model.TopMenu;
+import model.Menus.TopMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
