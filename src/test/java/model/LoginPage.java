@@ -1,10 +1,11 @@
 package model;
 
+import model.Menus.Header;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
-    MainPage mainPage;
+    Header header;
     LoginPage loginPage;
 
     WebDriver driver;

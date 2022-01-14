@@ -2,18 +2,16 @@ package Utils;
 
 import model.CartPage;
 import model.LoginPage;
-import model.MainPage;
+import model.Menus.Header;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
 public class UtilsMethod extends BaseTest{
-    MainPage mainPage;
+    Header header;
     LoginPage loginPage;
     WebDriver driver;
 
@@ -23,16 +21,16 @@ public class UtilsMethod extends BaseTest{
 
     public void login(String login, String pass) {
         System.out.println("Start");
-        mainPage = new MainPage(driver);
-        loginPage = mainPage.clickLoginButton()
+        header = new Header(driver);
+        loginPage = header.clickLoginButton()
                  .fillUsername(login)
                  .fillPassword(pass)
                  .clickSigninButton();
     }
 
     public void loginDefault() {
-        mainPage = new MainPage(driver);
-        loginPage = mainPage.clickLoginButton()
+        header = new Header(driver);
+        loginPage = header.clickLoginButton()
                 .fillUsername(getUserName())
                 .fillPassword(getUserPassword())
                 .clickSigninButton();

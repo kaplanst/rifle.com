@@ -1,5 +1,6 @@
 package model;
 
+import model.Menus.Header;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,9 +20,9 @@ public class CartPage {
         return this;
     }
 
-    public MainPage clickProductFromCart () {
+    public Header clickProductFromCart () {
         driver.findElement(productLinInCart).click();
-        return new MainPage (driver);
+        return new Header(driver);
     }
 
 }

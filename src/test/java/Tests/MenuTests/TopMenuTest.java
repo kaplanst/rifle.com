@@ -1,7 +1,6 @@
 package Tests.MenuTests;
 
 import Utils.BaseTest;
-import Utils.UtilsMethod;
 import model.Menus.TopMenu;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -11,7 +10,6 @@ import org.testng.annotations.Test;
 public class TopMenuTest extends BaseTest {
 
     TopMenu topMenu;
-    UtilsMethod utilsMethod;
 
     @BeforeMethod
     void startTests() {
@@ -102,12 +100,6 @@ public class TopMenuTest extends BaseTest {
         }
         System.out.println(driver.getTitle());
         Assert.assertEquals(driver.getTitle(), expectedTitle);
-    }
-
-    @Test
-    void menuTest() {
-        topMenu = new TopMenu(driver);
-        topMenu.topMenuFullTest();
     }
 
 }

@@ -3,7 +3,7 @@ package Tests;
 import Utils.BaseTest;
 import Utils.UtilsMethod;
 import model.CartPage;
-import model.MainPage;
+import model.Menus.Header;
 import model.Menus.TopMenu;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CartPageTest extends BaseTest {
-    MainPage mainPage;
+    Header header;
     TopMenu menu;
     CartPage cartPage;
     UtilsMethod utils;
@@ -19,7 +19,7 @@ public class CartPageTest extends BaseTest {
 
     @BeforeMethod
     void startTests(){
-        mainPage = new MainPage(driver);
+        header = new Header(driver);
         utils = new UtilsMethod(driver);
         menu = new TopMenu(driver);
         cartPage = new CartPage(driver);
@@ -27,26 +27,26 @@ public class CartPageTest extends BaseTest {
 
     @Test
         void topMenuTest(){
-            mainPage.clickCartButton();
+            header.clickCartButton();
             menu.topMenuShortTest();
     }
 
     @Test
     void clickCartButton (){
-        mainPage.clickCartButton();
+        header.clickCartButton();
         Assert.assertEquals(driver.findElement(By.xpath("//h1")).getText(), "My Shopping Cart");
     }
 
     @Test
     void clickBackToShoppingNoLogin () {
-        cartPage = mainPage.clickCartButton()
+        cartPage = header.clickCartButton()
                 .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//h3")).getText(), "Motorcycle Windshields and Fairings");
     }
 
     @Test
     void clickBackToShoppingNoLoginProduct () {
-        cartPage = mainPage.clickCartButton()
+        cartPage = header.clickCartButton()
                 .clickProductFromCart()
                 .clickCartButton()
                 .clickBackToShopping();
@@ -56,7 +56,7 @@ public class CartPageTest extends BaseTest {
     @Test
     void clickBackToShoppingLogin () {
         utils.loginDefault();
-        cartPage = mainPage.clickCartButton()
+        cartPage = header.clickCartButton()
                 .clickBackToShopping();
         Assert.assertEquals(driver.findElement(By.xpath("//h3")).getText(), "Motorcycle Windshields and Fairings");
     }
@@ -64,7 +64,7 @@ public class CartPageTest extends BaseTest {
     @Test
     void clickBackToShoppingLoginProduct () {
         utils.loginDefault();
-        cartPage = mainPage.clickCartButton();
+        cartPage = header.clickCartButton();
                 utils.clearCart()
                 .clickProductFromCart()
                 .clickCartButton()

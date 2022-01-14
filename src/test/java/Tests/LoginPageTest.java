@@ -3,7 +3,7 @@ package Tests;
 import Utils.BaseTest;
 import Utils.UtilsMethod;
 import model.LoginPage;
-import model.MainPage;
+import model.Menus.Header;
 import model.Menus.TopMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,25 +12,25 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginPageTest extends BaseTest {
-    MainPage mainPage;
+    Header header;
     LoginPage loginPage;
     UtilsMethod utils;
     TopMenu topMenu;
 
     @BeforeMethod
     void startTests(){
-        mainPage = new MainPage(driver);
+        header = new Header(driver);
     }
 
     @Test
     public void loginLinkTest() {  // Test case #TC-HD-001
-        mainPage.clickLoginButton();
+        header.clickLoginButton();
         Assert.assertEquals(driver.findElement(By.xpath("//h1")).getText(), "Account Sign In");
     }
 
     @Test
     void  loginWithCorrectCredsPOMTest() {  // Test case #TC-HD-002
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillUsername(getUserName())
                 .fillPassword(getUserPassword())
                 .clickSigninButton();
@@ -39,7 +39,7 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     void loginWithIncorrectCredsTest() {  // Test case #TC-HD-003
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillUsername("WRONG_LOGIN")
                 .fillPassword(getUserPassword())
                 .clickSigninButton();
@@ -48,14 +48,14 @@ public class LoginPageTest extends BaseTest {
 
     @Test
     void loginWithEmptyUsernameTest() {  // Test case #TC-HD-004
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillPassword(getUserPassword())
                 .clickSigninButton();
         Assert.assertTrue(driver.findElement(By.xpath("//*[text()='You must provide a user name.']")).isDisplayed());
     }
     @Test
     void registerExistUserTest(){
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillNewUsername(getUserName())
                 .fillNewUserPassword(getUserPassword())
                 .confirmNewUserPassword(getUserPassword())
@@ -65,7 +65,7 @@ public class LoginPageTest extends BaseTest {
     }
     @Test
     void registerWithWrongUserNameTest() {
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillNewUsername("WRONG_LOGIN")
                 .fillNewUserPassword("AnyPassword")
                 .confirmNewUserPassword("AnyPassword")
@@ -76,7 +76,7 @@ public class LoginPageTest extends BaseTest {
     }
    @Test
     void registerWithShortPasswordTest() {
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillNewUsername(getUserName())
                 .fillNewUserPassword("123")
                 .confirmNewUserPassword("123")
@@ -87,7 +87,7 @@ public class LoginPageTest extends BaseTest {
     }
    @Test
     void registerWithoutPasswordTest() {
-        loginPage = mainPage.clickLoginButton()
+        loginPage = header.clickLoginButton()
                 .fillNewUsername(getUserName())
                 .clickRegisterButton();
         WebElement noPassword = driver.findElement(By.xpath("//*[text()='You must provide a password']"));
@@ -105,11 +105,11 @@ public class LoginPageTest extends BaseTest {
     @Test
     void menuTest(){
         topMenu = new TopMenu(driver);
-        mainPage.clickLoginButton();
+        header.clickLoginButton();
         topMenu.topMenuShortTest();
         utils = new UtilsMethod(driver);
         utils.loginDefault();
-        mainPage.clickLoginButton();
+        header.clickLoginButton();
         topMenu.topMenuFullTest();
     }
 }
