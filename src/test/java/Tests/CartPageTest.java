@@ -16,7 +16,6 @@ public class CartPageTest extends BaseTest {
     CartPage cartPage;
     UtilsMethod utils;
 
-
     @BeforeMethod
     void startTests(){
         header = new Header(driver);
