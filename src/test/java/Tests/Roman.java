@@ -19,7 +19,7 @@ public class Roman extends BaseTest {
 
         driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ClearBasketButton']")).click();
         driver.switchTo().alert().accept();
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         Assert.assertEquals(driver.findElement(By.xpath("//*[@class='message']")).getText(), "Your cart is empty.");
 
     }
