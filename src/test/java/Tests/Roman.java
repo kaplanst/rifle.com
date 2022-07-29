@@ -21,6 +21,6 @@ public class Roman extends BaseTest {
         driver.switchTo().alert().accept();
         Thread.sleep(2000);
         Assert.assertEquals(driver.findElement(By.xpath("//*[@class='message']")).getText(), "Your cart is empty.");
-
+        // huy!
     }
 }
