@@ -3,6 +3,8 @@ package model;
 import model.Menus.Header;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
     Header header;
@@ -10,7 +12,8 @@ public class LoginPage {
 
     WebDriver driver;
 
-    By username = By.id("ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_UserName");
+    @FindBy (id = "ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_UserName")
+    WebElement username;
     By password = By.id("ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_Password");
     By signInButton = By.id("ctl00_ctl00_NestedMaster_PageContent_LoginDialog1_LoginButton");
     By newUserField = By.id("ctl00_ctl00_NestedMaster_PageContent_RegisterDialog1_UserName");
@@ -22,7 +25,7 @@ public class LoginPage {
         this.driver = driver;
     }
     public LoginPage fillUsername (String strUserName){
-        driver.findElement(username).sendKeys(strUserName);
+        username.sendKeys(strUserName);
         return this;
     }
     public LoginPage fillPassword (String strPassword){

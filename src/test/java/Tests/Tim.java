@@ -24,7 +24,10 @@ public class Tim extends BaseTest {
         driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_webpagePage']/div/div[1]/div[1]/a/img")).click();
         driver.findElement(By.xpath("//*[@class='form-control-inline']")).click();
         driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_SortResults']/option[3]")).click();
-        Assert.assertEquals(driver.findElement(By.xpath("//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_CatalogNodeList_ctl00_CategoryItem_CategoryName']")).getText(), "Rifle Cruise Tour Fairing");
+        Assert.assertEquals(
+                driver.findElement(By.xpath(
+                        "//*[@id='ctl00_ctl00_NestedMaster_PageContent_ctl00_CatalogNodeList_ctl00_CategoryItem_CategoryName']"))
+                        .getText(), "Rifle Cruise Tour Fairing");
     }
 
     @Test
